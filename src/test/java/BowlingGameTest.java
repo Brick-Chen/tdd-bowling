@@ -9,4 +9,12 @@ public class BowlingGameTest {
             bowlingGame.getTotalPoints(null);
         });
     }
+
+    @Test
+    public void should_throw_exception_when_roundPoints_is_Empty() {
+        Assertions.assertThrows(Error.class, () -> {
+            BowlingGame bowlingGame = new BowlingGame();
+            bowlingGame.getTotalPoints("");
+        });
+    }
 }

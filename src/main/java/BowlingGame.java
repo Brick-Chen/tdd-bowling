@@ -3,6 +3,9 @@ public class BowlingGame {
         if (roundPoints == null) {
             throw new NullPointerException();
         }
+        if (roundPoints.length() == 0) {
+            throw new Error("roundPoints is Empty!");
+        }
         return 0;
     }
 }
