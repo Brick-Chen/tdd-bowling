@@ -1,6 +1,11 @@
 import java.util.Arrays;
 
 public class BowlingGame {
+    private final static int FULL_SCORE = 10;
+    private final static int TOTAL_ROUND = 10;
+    private final static int MIN_TIME = 11;
+    private final static int MAX_TIME = 20;
+
     public int getTotalPoints(String roundPoints) throws Exception {
         if (roundPoints == null) {
             throw new NullPointerException();
@@ -18,7 +23,7 @@ public class BowlingGame {
 
     private boolean valid(String roundPoints) {
         String[] points = roundPoints.split(",");
-        if (points.length < 11 || points.length > 20) {
+        if (points.length < MIN_TIME || points.length > MAX_TIME) {
             return false;
         }
         boolean flag = true;
@@ -34,7 +39,27 @@ public class BowlingGame {
     }
 
     private int calculate(int[] points) {
-        return 0;
+        int round = 0;
+        int pos = 0;
+        int sum = 0;
+        while(round < TOTAL_ROUND) {
+            if (points[pos] < FULL_SCORE) {
+                int roundSum = points[pos] + points[pos + 1];
+                if (roundSum < FULL_SCORE) {
+                    sum += roundSum;
+                }
+                else if (roundSum == FULL_SCORE) {
+                    sum += FULL_SCORE + points[pos + 2];
+                }
+                pos += 2;
+            }
+            else if (points[pos] == FULL_SCORE) {
+                sum += FULL_SCORE + points[pos + 1] + points[pos + 2];
+                pos += 1;
+            }
+            ++round;
+        }
+        return sum;
     }
 
 }
