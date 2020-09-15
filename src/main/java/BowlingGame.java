@@ -38,7 +38,7 @@ public class BowlingGame {
         return flag;
     }
 
-    private int calculate(int[] points) {
+    private int calculate(int[] points) throws Exception {
         int round = 0;
         int pos = 0;
         int sum = 0;
@@ -51,11 +51,17 @@ public class BowlingGame {
                 else if (roundSum == FULL_SCORE) {
                     sum += FULL_SCORE + points[pos + 2];
                 }
+                else {
+                    throw new Exception("Invalid round total scores!");
+                }
                 pos += 2;
             }
             else if (points[pos] == FULL_SCORE) {
                 sum += FULL_SCORE + points[pos + 1] + points[pos + 2];
                 pos += 1;
+            }
+            else {
+                throw new Exception("Invalid input score");
             }
             ++round;
         }
