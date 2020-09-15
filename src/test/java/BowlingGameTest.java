@@ -12,42 +12,47 @@ public class BowlingGameTest {
 
     @Test
     public void should_throw_exception_when_roundPoints_is_empty() {
-        Assertions.assertThrows(Exception.class, () -> {
+        Exception exception = Assertions.assertThrows(Exception.class, () -> {
             BowlingGame bowlingGame = new BowlingGame();
             bowlingGame.getTotalPoints("");
         });
+        Assertions.assertEquals("roundPoints is Empty!", exception.getMessage());
     }
 
     @Test
     public void should_throw_exception_when_roundPoints_length_is_not_valid() {
-        Assertions.assertThrows(Exception.class, () -> {
+        Exception exception = Assertions.assertThrows(Exception.class, () -> {
            BowlingGame bowlingGame = new BowlingGame();
            bowlingGame.getTotalPoints("2,3,4");
         });
+        Assertions.assertEquals("roundPoints is not valid", exception.getMessage());
     }
 
     @Test
     public void should_throw_exception_when_roundPoints_number_is_not_valid() {
-        Assertions.assertThrows(Exception.class, () -> {
+        Exception exception = Assertions.assertThrows(Exception.class, () -> {
             BowlingGame bowlingGame = new BowlingGame();
             bowlingGame.getTotalPoints("10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 7.5");
         });
+        Assertions.assertEquals("roundPoints is not valid", exception.getMessage());
     }
 
     @Test
     public void should_throw_exception_when_one_round_point_is_greater_than_10() {
-        Assertions.assertThrows(Exception.class, () -> {
+        Exception exception = Assertions.assertThrows(Exception.class, () -> {
            BowlingGame bowlingGame = new BowlingGame();
            bowlingGame.getTotalPoints("5,4,8,2,11,4,5,10,10,10,3,7,4,5,6,3");
         });
+        Assertions.assertEquals("Invalid input score", exception.getMessage());
     }
 
     @Test
     public void should_throw_exception_when_sum_of_two_points_in_a_round_greater_than_10() {
-        Assertions.assertThrows(Exception.class, () -> {
+        Exception exception = Assertions.assertThrows(Exception.class, () -> {
             BowlingGame bowlingGame = new BowlingGame();
             bowlingGame.getTotalPoints("3,7,4,6,2,7,6,5,4,6,9,1,10,10,10,7,2");
         });
+        Assertions.assertEquals("Invalid round total scores!", exception.getMessage());
     }
 
     @Test
