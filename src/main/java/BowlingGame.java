@@ -4,7 +4,7 @@ public class BowlingGame {
     private final static int FULL_SCORE = 10;
     private final static int TOTAL_ROUND = 10;
     private final static int MIN_TIME = 11;
-    private final static int MAX_TIME = 20;
+    private final static int MAX_TIME = 21;
 
     public int getTotalPoints(String roundPoints) throws Exception {
         if (roundPoints == null) {
